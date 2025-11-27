@@ -1,9 +1,10 @@
 // ISO3166Tests.swift
 // ISO 3166 Tests
 
-import Testing
-@testable import ISO_3166
 import Foundation
+import Testing
+
+@testable import ISO_3166
 
 @Suite("ISO 3166 Country Codes")
 struct ISO3166Tests {

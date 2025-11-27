@@ -257,6 +257,6 @@ extension ISO_3166.Numeric: CaseIterable {
         .`876`,
         .`882`,
         .`887`,
-        .`894`
+        .`894`,
     ]
 }

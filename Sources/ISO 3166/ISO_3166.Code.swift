@@ -86,8 +86,7 @@ extension ISO_3166.Code {
             else if normalized.allSatisfy({ $0.ascii.isDigit }) {
                 let numeric = try ISO_3166.Numeric(normalized)
                 self = .numeric(numeric)
-            }
-            else {
+            } else {
                 throw ISO_3166.Error.invalidCodeLength(normalized.count)
             }
 

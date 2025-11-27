@@ -257,6 +257,6 @@ extension ISO_3166.Alpha3: CaseIterable {
         .yem,
         .zaf,
         .zmb,
-        .zwe
+        .zwe,
     ]
 }
