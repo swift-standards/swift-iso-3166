@@ -7,7 +7,7 @@
 // Generated from JSON data files using Scripts/generate-country-codes.swift
 // To update: modify JSON files in Resources/ then run: swift Scripts/generate-country-codes.swift
 
-import Standards
+import Standard_Library_Extensions
 
 extension ISO_3166 {
     /// Mapping from ISO 3166-1 alpha-2 (2-letter) to alpha-3 (3-letter) codes

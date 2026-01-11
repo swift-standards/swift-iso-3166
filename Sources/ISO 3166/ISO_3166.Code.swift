@@ -3,7 +3,7 @@
 //
 // Country/region code representation (all formats)
 
-import Standards
+import Standard_Library_Extensions
 
 extension ISO_3166 {
     /// Country/region code per ISO 3166-1 (all formats)

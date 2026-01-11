@@ -4,7 +4,7 @@
 // Three-letter country code (ISO 3166-1 alpha-3)
 
 import INCITS_4_1986
-import Standards
+import Standard_Library_Extensions
 
 extension ISO_3166 {
     /// Three-letter country code per ISO 3166-1 alpha-3
