@@ -3,7 +3,7 @@
 //
 // Two-letter country code (ISO 3166-1 alpha-2)
 
-import INCITS_4_1986
+import ASCII
 import Standard_Library_Extensions
 
 extension ISO_3166 {
