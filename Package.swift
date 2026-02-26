@@ -42,7 +42,13 @@ let package = Package(
             resources: [
                 .copy("Resources")
     ]
-        )
+        ),
+        .testTarget(
+            name: "ISO 3166 Tests",
+            dependencies: [
+                "ISO 3166",
+            ]
+        ),
     ],
     swiftLanguageModes: [.v6]
 )
@@ -53,6 +59,7 @@ for target in package.targets where ![.system, .binary, .plugin, .macro].contain
         .enableUpcomingFeature("ExistentialAny"),
         .enableUpcomingFeature("InternalImportsByDefault"),
         .enableUpcomingFeature("MemberImportVisibility"),
+        .enableUpcomingFeature("NonisolatedNonsendingByDefault"),
         .enableExperimentalFeature("Lifetimes"),
         .enableExperimentalFeature("SuppressedAssociatedTypes"),
         .enableExperimentalFeature("SuppressedAssociatedTypesWithDefaults"),
