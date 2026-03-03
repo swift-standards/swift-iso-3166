@@ -33,7 +33,7 @@ extension ISO_3166 {
         ///
         /// - Parameter value: Three-digit numeric code string
         /// - Throws: `Numeric.Error` if invalid
-        public init(_ value: some StringProtocol) throws {
+        public init(_ value: some StringProtocol) throws(Error) {
             // Numeric codes are not case-sensitive, but we normalize for consistency
             let normalized = String(value)
 

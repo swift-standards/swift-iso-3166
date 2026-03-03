@@ -525,15 +525,15 @@ struct ISO3166Tests {
 
     @Test
     func `Code: Invalid code throws`() {
-        #expect(throws: ISO_3166.Alpha2.Error.invalidAlpha2Code("zz")) {
+        #expect(throws: ISO_3166.Error.invalidAlpha2Code("zz")) {
             try ISO_3166.Code("ZZ")
         }
 
-        #expect(throws: ISO_3166.Alpha3.Error.invalidAlpha3Code("zzz")) {
+        #expect(throws: ISO_3166.Error.invalidAlpha3Code("zzz")) {
             try ISO_3166.Code("ZZZ")
         }
 
-        #expect(throws: ISO_3166.Numeric.Error.invalidNumericCode("000")) {
+        #expect(throws: ISO_3166.Error.invalidNumericCode("000")) {
             try ISO_3166.Code("000")
         }
     }

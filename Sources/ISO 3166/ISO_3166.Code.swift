@@ -3,6 +3,7 @@
 //
 // Country/region code representation (all formats)
 
+import ASCII
 import Standard_Library_Extensions
 
 extension ISO_3166 {
@@ -68,30 +69,54 @@ extension ISO_3166.Code {
     ///
     /// - Parameter code: Country code string (2 letters, 3 letters, or 3 digits)
     /// - Throws: `ISO_3166.Error` if the code is invalid
-    public init(_ code: some StringProtocol) throws {
+    public init(_ code: some StringProtocol) throws(ISO_3166.Error) {
         let normalized = code.lowercased()
 
         switch normalized.count {
         case 2:
-            let alpha2 = try ISO_3166.Alpha2(normalized)
-            self = .alpha2(alpha2)
+            do {
+                let alpha2 = try ISO_3166.Alpha2(normalized)
+                self = .alpha2(alpha2)
+            } catch {
+                switch error {
+                case .invalidCodeLength(let n): throw .invalidCodeLength(n)
+                case .invalidCharacters(let s): throw .invalidCharacters(s)
+                case .invalidAlpha2Code(let s): throw .invalidAlpha2Code(s)
+                }
+            }
 
         case 3:
             // Try alpha-3 first (letters)
             if normalized.allSatisfy({ $0.ascii.isLetter }) {
-                let alpha3 = try ISO_3166.Alpha3(normalized)
-                self = .alpha3(alpha3)
+                do {
+                    let alpha3 = try ISO_3166.Alpha3(normalized)
+                    self = .alpha3(alpha3)
+                } catch {
+                    switch error {
+                    case .invalidCodeLength(let n): throw .invalidCodeLength(n)
+                    case .invalidCharacters(let s): throw .invalidCharacters(s)
+                    case .invalidAlpha3Code(let s): throw .invalidAlpha3Code(s)
+                    }
+                }
             }
             // Try numeric (digits)
             else if normalized.allSatisfy({ $0.ascii.isDigit }) {
-                let numeric = try ISO_3166.Numeric(normalized)
-                self = .numeric(numeric)
+                do {
+                    let numeric = try ISO_3166.Numeric(normalized)
+                    self = .numeric(numeric)
+                } catch {
+                    switch error {
+                    case .invalidCodeLength(let n): throw .invalidCodeLength(n)
+                    case .invalidCharacters(let s): throw .invalidCharacters(s)
+                    case .invalidNumericCode(let s): throw .invalidNumericCode(s)
+                    }
+                }
             } else {
-                throw ISO_3166.Error.invalidCodeLength(normalized.count)
+                throw .invalidCodeLength(normalized.count)
             }
 
         default:
-            throw ISO_3166.Error.invalidCodeLength(normalized.count)
+            throw .invalidCodeLength(normalized.count)
         }
     }
 }
