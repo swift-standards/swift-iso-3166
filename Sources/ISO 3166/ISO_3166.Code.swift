@@ -3,7 +3,7 @@
 //
 // Country/region code representation (all formats)
 
-import ASCII
+import ASCII_Primitives
 import Standard_Library_Extensions
 
 extension ISO_3166 {

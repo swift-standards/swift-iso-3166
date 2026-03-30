@@ -3,7 +3,7 @@
 //
 // Numeric country code (ISO 3166-1 numeric)
 
-import ASCII
+import ASCII_Primitives
 import Standard_Library_Extensions
 
 extension ISO_3166 {
