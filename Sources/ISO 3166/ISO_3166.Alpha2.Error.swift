@@ -2,6 +2,7 @@
 // ISO 3166
 
 extension ISO_3166.Alpha2 {
+    /// Errors that can occur when validating an ISO 3166-1 alpha-2 country code.
     public enum Error: Swift.Error, Sendable, Equatable {
         /// Code length is invalid (must be 2)
         case invalidCodeLength(Int)
