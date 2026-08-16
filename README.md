@@ -170,8 +170,8 @@ print(lookupCountry("jp")!)  // "jp = jpn = 392"
 This implementation follows the refined type pattern:
 - **String-based storage**: Codes stored as validated strings
 - **Type-safe conversions**: Compiler-enforced valid transformations
-- **Single source of truth**: Generated from authoritative UN data
-- **No duplication**: Code generation from JSON eliminates repetition
+- **Single source of truth**: Generated Swift snapshot of authoritative UN data
+- **Atomic updates**: Accessors, case collections, and mappings move together
 
 ### Performance
 
@@ -179,18 +179,12 @@ This implementation follows the refined type pattern:
 - **O(1) conversions**: All conversions use pre-computed dictionaries
 - **Minimal memory**: Static let accessors share underlying storage
 
-### Code Generation
+### Registry Updates
 
-All 249 country codes are generated from JSON data files:
-- `Resources/iso-3166-1.json`: Authoritative UN Statistics Division data
-- `Scripts/generate-country-codes.swift`: Code generator
-- `Generated/*.swift`: Auto-generated files (do not edit directly)
-
-To regenerate:
-
-```bash
-swift Scripts/generate-country-codes.swift
-```
+The Swift files under `Generated` are the package's canonical snapshot of all
+249 country codes. When the authoritative registry changes, update the alpha-2,
+alpha-3, and numeric accessors, their `CaseIterable` collections, and the
+conversion mappings together.
 
 ## Data Source
 
