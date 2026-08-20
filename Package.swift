@@ -8,16 +8,6 @@ extension String {
 
 extension String { var tests: Self { self + " Tests" } }
 
-extension Target.Dependency {
-    static var iso3166: Self { .target(name: .iso3166) }
-    static var standards: Self {
-        .product(name: "Standard Library Extensions", package: "swift-standard-library-extensions")
-    }
-    static var ascii: Self {
-        .product(name: "ASCII Primitives", package: "swift-ascii-primitives")
-    }
-}
-
 let package = Package(
     name: "swift-iso-3166",
     platforms: [
@@ -43,8 +33,11 @@ let package = Package(
         .target(
             name: "ISO 3166",
             dependencies: [
-                .standards,
-                .ascii,
+                .product(
+                    name: "Standard Library Extensions",
+                    package: "swift-standard-library-extensions"
+                ),
+                .product(name: "ASCII Primitives", package: "swift-ascii-primitives"),
             ]
         ),
         .testTarget(
