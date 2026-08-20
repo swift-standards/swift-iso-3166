@@ -1,4 +1,4 @@
-// swift-tools-version: 6.3.3
+// swift-tools-version: 6.4
 
 import PackageDescription
 
@@ -13,7 +13,7 @@ extension Target.Dependency {
     static var standards: Self {
         .product(name: "Standard Library Extensions", package: "swift-standard-library-extensions")
     }
-    static var incits_4_1986: Self {
+    static var ascii: Self {
         .product(name: "ASCII Primitives", package: "swift-ascii-primitives")
     }
 }
@@ -21,10 +21,10 @@ extension Target.Dependency {
 let package = Package(
     name: "swift-iso-3166",
     platforms: [
-        .macOS("27"),
-        .iOS("27"),
-        .tvOS("27"),
-        .watchOS("27"),
+        .macOS(.v27),
+        .iOS(.v27),
+        .tvOS(.v27),
+        .watchOS(.v27),
     ],
     products: [
         .library(name: "ISO 3166", targets: ["ISO 3166"])
@@ -44,7 +44,7 @@ let package = Package(
             name: "ISO 3166",
             dependencies: [
                 .standards,
-                .incits_4_1986,
+                .ascii,
             ]
         ),
         .testTarget(
