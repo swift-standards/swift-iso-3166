@@ -1,6 +1,3 @@
-// ISO3166Tests.swift
-// ISO 3166 Tests
-
 import Foundation
 import Testing
 
@@ -15,21 +12,17 @@ extension ISO_3166 {
     }
 }
 
-// MARK: - Unit
-
 extension ISO_3166.Tests.Unit {
-
-    // MARK: - Alpha2 Tests
 
     @Test
     func `Alpha2: Valid 2-letter codes`() throws {
         let us = try ISO_3166.Alpha2("us")
         #expect(us.value == "us")
 
-        let gb = try ISO_3166.Alpha2("GB")  // Test case normalization
+        let gb = try ISO_3166.Alpha2("GB")
         #expect(gb.value == "gb")
 
-        let jp = try ISO_3166.Alpha2("Jp")  // Test mixed case
+        let jp = try ISO_3166.Alpha2("Jp")
         #expect(jp.value == "jp")
     }
 
@@ -114,17 +107,15 @@ extension ISO_3166.Tests.Unit {
         #expect(decoded.value == "us")
     }
 
-    // MARK: - Alpha3 Tests
-
     @Test
     func `Alpha3: Valid 3-letter codes`() throws {
         let usa = try ISO_3166.Alpha3("usa")
         #expect(usa.value == "usa")
 
-        let gbr = try ISO_3166.Alpha3("GBR")  // Test case normalization
+        let gbr = try ISO_3166.Alpha3("GBR")
         #expect(gbr.value == "gbr")
 
-        let jpn = try ISO_3166.Alpha3("Jpn")  // Test mixed case
+        let jpn = try ISO_3166.Alpha3("Jpn")
         #expect(jpn.value == "jpn")
     }
 
@@ -209,8 +200,6 @@ extension ISO_3166.Tests.Unit {
         #expect(decoded.value == "usa")
     }
 
-    // MARK: - Numeric Tests
-
     @Test
     func `Numeric: Valid numeric codes`() throws {
         let us = try ISO_3166.Numeric("840")
@@ -266,14 +255,14 @@ extension ISO_3166.Tests.Unit {
 
     @Test
     func `Numeric: Common static constants`() {
-        #expect(ISO_3166.Numeric.`840`.value == "840")  // US
-        #expect(ISO_3166.Numeric.`826`.value == "826")  // GB
-        #expect(ISO_3166.Numeric.`392`.value == "392")  // JP
-        #expect(ISO_3166.Numeric.`276`.value == "276")  // DE
-        #expect(ISO_3166.Numeric.`250`.value == "250")  // FR
-        #expect(ISO_3166.Numeric.`156`.value == "156")  // CN
-        #expect(ISO_3166.Numeric.`124`.value == "124")  // CA
-        #expect(ISO_3166.Numeric.`036`.value == "036")  // AU
+        #expect(ISO_3166.Numeric.`840`.value == "840")
+        #expect(ISO_3166.Numeric.`826`.value == "826")
+        #expect(ISO_3166.Numeric.`392`.value == "392")
+        #expect(ISO_3166.Numeric.`276`.value == "276")
+        #expect(ISO_3166.Numeric.`250`.value == "250")
+        #expect(ISO_3166.Numeric.`156`.value == "156")
+        #expect(ISO_3166.Numeric.`124`.value == "124")
+        #expect(ISO_3166.Numeric.`036`.value == "036")
     }
 
     @Test
@@ -304,8 +293,6 @@ extension ISO_3166.Tests.Unit {
         #expect(decoded.value == "840")
     }
 
-    // MARK: - CaseIterable Tests
-
     @Test
     func `CaseIterable: Alpha2 has all 249 codes`() {
         #expect(ISO_3166.Alpha2.allCases.count == 249)
@@ -328,29 +315,22 @@ extension ISO_3166.Tests.Unit {
     }
 }
 
-// MARK: - Edge Case
-
 extension ISO_3166.Tests.`Edge Case` {
 
     @Test
     func `ISO 3166: Edge case countries`() throws {
-        // Antarctica
+
         let aq = try ISO_3166.Alpha2("aq")
         let ata = ISO_3166.Alpha3(aq)
         #expect(ata.value == "ata")
 
-        // Vatican City
         let va = try ISO_3166.Alpha2("va")
         let vat = ISO_3166.Alpha3(va)
         #expect(vat.value == "vat")
     }
 }
 
-// MARK: - Integration
-
 extension ISO_3166.Tests.Integration {
-
-    // MARK: - Conversion Tests
 
     @Test
     func `Conversion: Alpha2 to Alpha3 (total function)`() {
@@ -412,40 +392,33 @@ extension ISO_3166.Tests.Integration {
         #expect(roundtrip == original)
     }
 
-    // MARK: - Specific Countries
-
     @Test
     func `ISO 3166: Major countries`() throws {
-        // United States
+
         let us = try ISO_3166.Alpha2("us")
         let usa = ISO_3166.Alpha3(us)
         let us840 = ISO_3166.Numeric(us)
         #expect(usa.value == "usa")
         #expect(us840.value == "840")
 
-        // United Kingdom
         let gb = try ISO_3166.Alpha2("gb")
         let gbr = ISO_3166.Alpha3(gb)
         let gb826 = ISO_3166.Numeric(gb)
         #expect(gbr.value == "gbr")
         #expect(gb826.value == "826")
 
-        // Japan
         let jp = try ISO_3166.Alpha2("jp")
         let jpn = ISO_3166.Alpha3(jp)
         let jp392 = ISO_3166.Numeric(jp)
         #expect(jpn.value == "jpn")
         #expect(jp392.value == "392")
 
-        // Germany
         let de = try ISO_3166.Alpha2("de")
         let deu = ISO_3166.Alpha3(de)
         let de276 = ISO_3166.Numeric(de)
         #expect(deu.value == "deu")
         #expect(de276.value == "276")
     }
-
-    // MARK: - Code Tests (All Formats)
 
     @Test
     func `Code: Create from alpha-2`() throws {
@@ -489,7 +462,6 @@ extension ISO_3166.Tests.Integration {
         let us2 = try ISO_3166.Code("USA")
         let us3 = try ISO_3166.Code("840")
 
-        // All represent United States
         #expect(us1.description == "us")
         #expect(us2.description == "usa")
         #expect(us3.description == "840")
@@ -513,7 +485,7 @@ extension ISO_3166.Tests.Integration {
         #expect(us1 == us2)
 
         let usa = try ISO_3166.Code("USA")
-        #expect(us1 != usa)  // Different cases are not equal
+        #expect(us1 != usa)
 
         let gb = try ISO_3166.Code("GB")
         #expect(us1 != gb)
@@ -524,19 +496,16 @@ extension ISO_3166.Tests.Integration {
         let encoder = JSONEncoder()
         let decoder = JSONDecoder()
 
-        // Alpha-2
         let us = try ISO_3166.Code("US")
         let usData = try encoder.encode(us)
         let usDecoded = try decoder.decode(ISO_3166.Code.self, from: usData)
         #expect(usDecoded == us)
 
-        // Alpha-3
         let usa = try ISO_3166.Code("USA")
         let usaData = try encoder.encode(usa)
         let usaDecoded = try decoder.decode(ISO_3166.Code.self, from: usaData)
         #expect(usaDecoded == usa)
 
-        // Numeric
         let us840 = try ISO_3166.Code("840")
         let us840Data = try encoder.encode(us840)
         let us840Decoded = try decoder.decode(ISO_3166.Code.self, from: us840Data)

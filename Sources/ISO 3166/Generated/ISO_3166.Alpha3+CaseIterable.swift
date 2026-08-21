@@ -1,11 +1,3 @@
-// ISO_3166.Alpha3+CaseIterable.swift
-// ISO 3166
-//
-// CaseIterable conformance for ISO 3166-1 alpha-3 (3-letter) codes
-//
-// Generated snapshot of the ISO 3166-1 country-code registry.
-// Update the declarations together from the authoritative registry.
-
 extension ISO_3166.Alpha3: CaseIterable {
     public static let allCases: [ISO_3166.Alpha3] = [
         .abw,

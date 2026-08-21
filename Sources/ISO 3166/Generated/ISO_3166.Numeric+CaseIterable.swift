@@ -1,11 +1,3 @@
-// ISO_3166.Numeric+CaseIterable.swift
-// ISO 3166
-//
-// CaseIterable conformance for ISO 3166-1 numeric codes
-//
-// Generated snapshot of the ISO 3166-1 country-code registry.
-// Update the declarations together from the authoritative registry.
-
 extension ISO_3166.Numeric: CaseIterable {
     public static let allCases: [ISO_3166.Numeric] = [
         .`004`,
