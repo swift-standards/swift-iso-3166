@@ -86,7 +86,7 @@ extension ISO_3166.Alpha3: Codable {
     // REASON: `Swift.Encodable.encode(to:)` is declared with untyped `throws`
     // upstream; a conforming implementation is signature-forced and cannot
     // express `throws(E)`.
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
         var container = encoder.singleValueContainer()
         try container.encode(value)
     }
@@ -94,7 +94,7 @@ extension ISO_3166.Alpha3: Codable {
     // REASON: `Swift.Decodable.init(from:)` is declared with untyped `throws`
     // upstream; a conforming implementation is signature-forced and cannot
     // express `throws(E)`.
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
         let container = try decoder.singleValueContainer()
         let string = try container.decode(String.self)
         try self.init(string)
